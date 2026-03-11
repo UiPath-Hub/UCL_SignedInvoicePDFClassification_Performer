@@ -1,0 +1,15 @@
+{
+  "Value": {
+    "Framework/Process.xaml": [
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "ab6f1585-8cd9-42f9-9081-d0e437eea76a",
+        "ActivityIdRef": "ReadPDFWithOCR_1",
+        "ActivityId": "1.1310",
+        "ActivityName": "Read PDF With OCR",
+        "IsTransient": false
+      }
+    ]
+  }
+}
