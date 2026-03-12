@@ -190,17 +190,22 @@
       <AssemblyReference>BaraUtility.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1230,6742" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="1230,1516" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="iemMachingCollection" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="listRegistedInvoiceNumber" />
+      <Variable x:TypeArguments="x:Boolean" Name="blFoundOne">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Searching for all the Invoice ID that exist in a page" sap:VirtualizedContainerService.HintSize="630,6719" sap2010:WorkflowViewState.IdRef="Sequence_27">
+    <Sequence DisplayName="Searching for all the Invoice ID that exist in a page" sap:VirtualizedContainerService.HintSize="522,1493" sap2010:WorkflowViewState.IdRef="Sequence_27">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="intPatternIndex" />
       </Sequence.Variables>
@@ -210,7 +215,7 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="596,175" sap2010:WorkflowViewState.IdRef="Assign_33">
+      <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_33">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(x:String)">[listRegistedInvoiceNumber]</OutArgument>
         </Assign.To>
@@ -218,30 +223,38 @@
           <InArgument x:TypeArguments="scg:List(x:String)">[New List(Of String)]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[intPatternIndex]" DataTable="[in_DT_MATCHING_PATTERNS]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="596,6461" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_35">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Boolean">[blFoundOne]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[intPatternIndex]" DataTable="[in_DT_MATCHING_PATTERNS]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,1060" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentPattern" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="For each in searching pattern" sap:VirtualizedContainerService.HintSize="594,6288" sap2010:WorkflowViewState.IdRef="Sequence_68">
+            <Sequence DisplayName="For each in searching pattern" sap:VirtualizedContainerService.HintSize="486,887" sap2010:WorkflowViewState.IdRef="Sequence_68">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[$&quot;Find Matching Pattern: &quot;&quot;{CurrentPattern.ToString}&quot;&quot;&quot;]" />
-              <ui:Matches FirstMatch="{x:Null}" BuilderPattern="เลขท[ี่]{0,3}\s*\S*" DisplayName="Find Matching Patterns" sap:VirtualizedContainerService.HintSize="560,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_strRawText]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;เลขท[ี่]{0,3}\\s*\\S*&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[CurrentPattern.Item( in_Config(&quot;strSearchingPatternTableColumnName_RegEx&quot;).ToString).ToString]" RegexOption="Compiled" Result="[iemMachingCollection]" />
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="560,175" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[$&quot;Searching ID : {iemMachingCollection.Count} match.&quot;]" />
-              <If Condition="[iemMachingCollection.Count &gt; 0]" DisplayName="If match &gt; 0 search all matching" sap:VirtualizedContainerService.HintSize="560,5786" sap2010:WorkflowViewState.IdRef="If_5">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[$&quot;Find Matching Pattern: &quot;&quot;{CurrentPattern.ToString}&quot;&quot;&quot;]" />
+              <ui:Matches FirstMatch="{x:Null}" BuilderPattern="เลขท[ี่]{0,3}\s*\S*" DisplayName="Find Matching Patterns" sap:VirtualizedContainerService.HintSize="452,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_strRawText]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;เลขท[ี่]{0,3}\\s*\\S*&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[CurrentPattern.Item( in_Config(&quot;strSearchingPatternTableColumnName_RegEx&quot;).ToString).ToString]" RegexOption="Compiled" Result="[iemMachingCollection]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[$&quot;Searching ID : {iemMachingCollection.Count} match.&quot;]" />
+              <If Condition="[iemMachingCollection.Count &gt; 0]" DisplayName="If match &gt; 0 search all matching" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="If_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="558,5184" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="522,3278" sap2010:WorkflowViewState.IdRef="Sequence_18">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:Dictionary(x:String, sd:DataRow)" Name="dictInvoiceNumberFound" />
                     </Sequence.Variables>
@@ -250,7 +263,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_8">
                       <Assign.To>
                         <OutArgument x:TypeArguments="scg:Dictionary(x:String, sd:DataRow)">[dictInvoiceNumberFound]</OutArgument>
                       </Assign.To>
@@ -258,7 +271,7 @@
                         <InArgument x:TypeArguments="scg:Dictionary(x:String, sd:DataRow)">[New Dictionary(Of String, DataRow)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For Each currentMatch" sap:VirtualizedContainerService.HintSize="524,2995" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[iemMachingCollection]">
+                    <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For Each currentMatch" sap:VirtualizedContainerService.HintSize="488,2995" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[iemMachingCollection]">
                       <ui:ForEach.Body>
                         <ActivityAction x:TypeArguments="str:Match">
                           <ActivityAction.Argument>
@@ -281,7 +294,7 @@
                             <ui:ModifyText DisplayName="Modify Text" sap:VirtualizedContainerService.HintSize="452,281" sap2010:WorkflowViewState.IdRef="ModifyText_1" OutputText="[strInvoiceNumber]" SourceText="[strInvoiceNumber]">
                               <ui:ModifyText.Body>
                                 <ActivityAction>
-                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,136" sap2010:WorkflowViewState.IdRef="Sequence_23">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -398,9 +411,9 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:ForEach>
-                    <ui:IfElseIfV2 Condition="[dictInvoiceNumberFound.Keys.Count = 0]" DisplayName="If matching does not find any results" sap:VirtualizedContainerService.HintSize="524,1954" sap2010:WorkflowViewState.IdRef="IfElseIfV2_2">
+                    <ui:IfElseIfV2 Condition="[dictInvoiceNumberFound.Keys.Count = 0]" DisplayName="If matching does not find any results" sap:VirtualizedContainerService.HintSize="488,48" sap2010:WorkflowViewState.IdRef="IfElseIfV2_2">
                       <ui:IfElseIfV2.Else>
-                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="522,288" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="522,406" sap2010:WorkflowViewState.IdRef="Sequence_64">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -428,7 +441,14 @@
                               </scg:List>
                             </ui:MultipleAssign.AssignOperations>
                           </ui:MultipleAssign>
-                          <ui:Return sap:VirtualizedContainerService.HintSize="488,48" sap2010:WorkflowViewState.IdRef="Return_1" />
+                          <Assign sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="Assign_34">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[blFoundOne]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                         </Sequence>
                       </ui:IfElseIfV2.Else>
                       <ui:IfElseIfV2.ElseIfs>
@@ -470,7 +490,7 @@
                       </ui:IfElseIfV2.ElseIfs>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -537,13 +557,13 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="558,472" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="522,472" sap2010:WorkflowViewState.IdRef="Sequence_19">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[in_DT_MATCHING_PATTERNS.RowCount = intPatternIndex+1]" DisplayName="If it's the last pattern" sap:VirtualizedContainerService.HintSize="524,412" sap2010:WorkflowViewState.IdRef="If_23">
+                    <If Condition="[in_DT_MATCHING_PATTERNS.RowCount = intPatternIndex+1]" DisplayName="If it's the last pattern" sap:VirtualizedContainerService.HintSize="488,412" sap2010:WorkflowViewState.IdRef="If_23">
                       <If.Then>
                         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_75">
                           <sap:WorkflowViewStateService.ViewState>
@@ -565,6 +585,27 @@
                         </Sequence>
                       </If.Else>
                     </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[blFoundOne]" DisplayName="If Matching found one INVOICE_ID in this pattern" sap:VirtualizedContainerService.HintSize="452,328" sap2010:WorkflowViewState.IdRef="If_24">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_78">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Return sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Return_2" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </Sequence>
                 </If.Else>
               </If>
