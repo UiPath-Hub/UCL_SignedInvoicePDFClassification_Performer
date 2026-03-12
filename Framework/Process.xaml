@@ -154,7 +154,7 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,10958" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,11133" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strMasterFilePath" />
       <Variable x:TypeArguments="upr:ILocalResource" Name="rsFile" />
@@ -297,7 +297,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="660,8150" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="660,8325" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="intCurrentPageIndex" />
         <Variable x:TypeArguments="x:Boolean" Name="blFileExists" />
@@ -362,9 +362,9 @@
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
-      <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[intCurrentPageIndex &lt;= intPageCount]" DisplayName="While" sap:VirtualizedContainerService.HintSize="626,3048" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_3">
+      <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[intCurrentPageIndex &lt;= intPageCount]" DisplayName="While" sap:VirtualizedContainerService.HintSize="626,3223" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_3">
         <ui:InterruptibleWhile.Body>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,2917" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,3092" sap2010:WorkflowViewState.IdRef="Sequence_12">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -390,6 +390,7 @@
                 </ActivityFunc>
               </ui:ReadPDFWithOCR.OCREngine>
             </ui:ReadPDFWithOCR>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Trace" Message="[&quot;Log OCR text : &quot;+strSplitPageFile+&quot;_OCR.txt&quot;]" />
             <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[strSplitPageFile+&quot;_OCR.txt&quot;]" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[strRawText]" />
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;OCR Result:&quot;]" />
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[strRawText]" />
