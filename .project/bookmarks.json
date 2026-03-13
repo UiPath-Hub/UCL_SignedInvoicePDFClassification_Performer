@@ -1,24 +1,3 @@
 {
-  "Value": {
-    "Framework/Process.xaml": [
-      {
-        "IsEnabled": true,
-        "Annotation": null,
-        "Id": "ab6f1585-8cd9-42f9-9081-d0e437eea76a",
-        "ActivityIdRef": "ReadPDFWithOCR_1",
-        "ActivityId": "1.1413",
-        "ActivityName": "Read PDF With OCR",
-        "IsTransient": false
-      },
-      {
-        "IsEnabled": true,
-        "Annotation": null,
-        "Id": "befafade-e6d1-493b-9bec-6457591d6dc2",
-        "ActivityIdRef": "InvokeWorkflowFile_1",
-        "ActivityId": "1.1219",
-        "ActivityName": "SearchForInvoiceID - Invoke Workflow File (SearchForInvoiceID.xaml)",
-        "IsTransient": false
-      }
-    ]
-  }
+  "Value": {}
 }

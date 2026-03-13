@@ -45,10 +45,18 @@
     },
     "processOptions": {
       "ignoredFiles": [
-        "Test_read_pattern_file.xaml"
+        "Test\\Test_read_pattern_file.xaml"
       ]
     },
-    "fileInfoCollection": [],
+    "fileInfoCollection": [
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "fd619ecc-bf45-4fba-9400-7a6964031d95",
+        "testCaseType": "TestCase",
+        "executionTemplateInvokeIsolated": false,
+        "fileName": "Test\\TestCase_SplitPDFFile.xaml"
+      }
+    ],
     "saveToCloud": false
   },
   "expressionLanguage": "VisualBasic",
